@@ -6,7 +6,7 @@
     "custom/debian": {
       "format": "󰣚",
       "tooltip": false,
-      "on-click": "wofi --show drun"
+      "on-click": "fuzzel"
     },
     "sway/workspaces": {
       "format": "{name}",

@@ -1,0 +1,9 @@
+# Some apps (like kitten) require ~/.local/bin to be in the path variable
+# as they create symlinks from their binaries to this path
+export PATH="$HOME/.local/bin:$PATH"
+
+# GO
+export PATH="/usr/local/go/bin:$PATH"
+
+# Custom scripts
+export PATH="$PATH:$HOME/.scripts/"

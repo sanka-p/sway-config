@@ -1,0 +1,8 @@
+{
+    config, 
+    ...
+}: {
+  imports = [
+    #./sway.nix
+  ];
+}
