@@ -14,11 +14,12 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term foot
+set $term kitty 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu dmenu_path | dmenu | xargs swaymsg exec --
+#set $menu dmenu_path | dmenu | xargs swaymsg exec --
+set $menu 'rofi -show drun'
 
 include /etc/sway/config-vars.d/*
 
@@ -225,5 +226,12 @@ bindsym $mod+r mode "resize"
 bar {
     swaybar_command waybar
 }
+
+# Assigns should come before exec lines
+assign [app_id="kitty"] 1
+assign [app_id="org.mozilla.firefox"] 2
+
+bindsym $mod+t exec "swaymsg workspace 1 && pgrep kitty && kitty"
+bindsym $mod+z exec "swaymsg workspace 2 && pgrep firefox && firefox"
 
 include /etc/sway/config.d/*

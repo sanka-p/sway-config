@@ -1,17 +1,38 @@
 {
   "layer": "top",
-    "modules-left": ["custom/debian", "sway/workspaces"],
-    "modules-center": ["clock"],
-    "modules-right": ["backlight", "pulseaudio", "bluetooth", "network", "battery", "tray"],
-    "custom/debian": {
-      "format": "󰣚",
+    "modules-left": ["custom/menu", "sway/workspaces"],
+    "modules-center": ["clock", "battery"],
+    "modules-right": [
+	"bluetooth",
+	"network", 
+	"backlight",
+	"pulseaudio"],
+    "margin": "4px",
+    "custom/menu": { 
+      "format": "",
       "tooltip": false,
-      "on-click": "fuzzel"
+      "on-click": "rofi -show drun"
     },
     "sway/workspaces": {
-      "format": "{name}",
-      "tooltip": false,
-      "all-outputs": true,
+	"disable-scroll": true,
+	"all-outputs": true,
+	"format": "{icon}",
+	"format-icons": {
+		"1": "",
+		"2": "󰖟",
+		"3": "",
+		"4": "󰕧",
+		"high-priority-named": [ "1", "2", "3", "4" ],
+		"urgent": "",
+		"focused": "",
+		"default": ""
+	},
+	"persistent-workspaces": {
+		"1": [],
+		"2": [],
+		"3": [],
+		"4": [],
+	},
     },
     "clock": {
       "format": "<span> </span>{:%H:%M}",
@@ -34,16 +55,21 @@
     "bluetooth": {
       "format": "<span></span> {status}",
       "format-disabled": "", // an empty format will hide the module
+      "format-off": "<span></span> Off",
+      "format-on": "<span></span> On",
       "format-connected": "<span></span> {device_alias}",
-      "tooltip-format-enumerate-connected": "{device_alias}   {device_address}"
+      "format-connected-battery": "<span></span> {device_alias} {device_battery_percentage}%",
+      "format-no-controller": "", 
+      "tooltip-format-enumerate-connected": "{device_alias} {device_address}"
     },
     "network": {
-      "interface": "wlp0s20f3",
+      "interface": "enp9s0",
       "format": "{ifname}",
-      "format-wifi": "<span> </span>{essid}",
-      "format-ethernet": "{ipaddr}/{cidr} ",
-      "format-disconnected": "<span>󰖪 </span>No Network",
+      "format-wifi": "<span> </span>{essid} ({signalStrength}%)",
+      "format-ethernet": "󰈀 Connected",
+      "format-disconnected": "<span>󰖪 </span>Disconnected",
       "tooltip": false,
+      "max-length": 50
     },
     "battery": {
       "format": "{icon} {capacity}%",
